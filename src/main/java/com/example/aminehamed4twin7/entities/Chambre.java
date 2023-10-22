@@ -4,13 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "Chambre")
 public class Chambre {
     @Id
@@ -19,11 +18,10 @@ public class Chambre {
     private long numeroChambre;
 
     @ManyToOne
-    @JoinColumn(name = "idBloc") // Name of the foreign key column in the Chambre table
+    @JoinColumn(name = "idBloc")
     private Bloc bloc;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "idChambre") // Name of the foreign key column in the Reservation table
-    private List<Reservation> reservations;
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Reservation> Reservations;
 }

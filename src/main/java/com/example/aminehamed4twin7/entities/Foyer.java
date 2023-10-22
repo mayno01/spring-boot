@@ -11,9 +11,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "foyer") // This annotation specifies the table name in the database
 public class Foyer {
     @Id
