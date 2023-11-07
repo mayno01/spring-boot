@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(name = "foyer") // This annotation specifies the table name in the database
+@Table(name = "foyer")
 public class Foyer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

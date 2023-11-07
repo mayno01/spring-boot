@@ -1,6 +1,5 @@
 package com.example.aminehamed4twin7.services;
 
-// FoyerServicesImpl.java
 
 import com.example.aminehamed4twin7.entities.Foyer;
 import com.example.aminehamed4twin7.repository.IFoyerRepository;
@@ -38,4 +37,6 @@ public class FoyerServicesImpl implements IFoyerServices {
     public void removeFoyer(long idFoyer) {
         foyerRepository.deleteById(idFoyer);
     }
+
+
 }

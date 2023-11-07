@@ -35,5 +35,12 @@ public class UniversiteRestController {
     public Universite retrieveUniversite(@PathVariable long id) {
         return universiteServices.retrieveUniversite(id);
     }
+
+
+
+    @PutMapping("/lol/{idFoyer}/{nom}")
+    public Universite affecterUnivFoyer(@PathVariable Long idFoyer, @PathVariable String nom) {
+        return universiteServices.affecterFoyerAUniversite(idFoyer, nom);
+    }
 }
 
