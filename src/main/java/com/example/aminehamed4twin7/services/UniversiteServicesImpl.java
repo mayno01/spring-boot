@@ -2,6 +2,7 @@ package com.example.aminehamed4twin7.services;
 
 
 
+import com.example.aminehamed4twin7.entities.Bloc;
 import com.example.aminehamed4twin7.entities.Foyer;
 import com.example.aminehamed4twin7.entities.Universite;
 import com.example.aminehamed4twin7.repository.IFoyerRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -47,8 +49,27 @@ public class UniversiteServicesImpl implements IUniversiteServices {
         Foyer foyer  = ifoyerRepository.findById(idFoyer).orElse(null);
         Universite universite = universiteRepository.findByNomUniversite(nomUniversite);
         universite.setFoyer(foyer);
-        // return universiteRepository.save(universite);
+
         return universite;
-        //save pour faire la mise a jour dans la base
+
     }
+    @Transactional
+    @Override
+    public Universite desaffecterFoyerAUniversite(long idUniversite) {
+        Universite universite = universiteRepository.findById(idUniversite).orElse(null);
+
+        if (universite != null) {
+
+            universite.setFoyer(null);
+
+            universiteRepository.save(universite);
+        }
+
+        return universite;
+    }
+
+
+
+
+
 }

@@ -4,6 +4,8 @@ package com.example.aminehamed4twin7.Controllers;
 
 import com.example.aminehamed4twin7.services.IBlocServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.aminehamed4twin7.entities.Bloc;
 import com.example.aminehamed4twin7.services.BlocServicesImpl;
@@ -40,5 +42,18 @@ public class BlocRestController {
     @DeleteMapping("/{id}")
     public void removeBloc(@PathVariable long id) {
         blocServices.removeBloc(id);
+    }
+
+
+    @PostMapping("/assign-chambres/{blocId}")
+    public ResponseEntity<Bloc> assignChambresToBloc(@RequestBody List<Long> numeroChambre,
+                                                     @PathVariable("blocId") long blocId) {
+        Bloc updatedBloc = blocServices.affecterChambresABloc(numeroChambre, blocId);
+
+        if (updatedBloc != null) {
+            return new ResponseEntity<>(updatedBloc, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
