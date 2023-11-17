@@ -2,6 +2,7 @@ package com.example.aminehamed4twin7.Controllers;
 
 // BlocRestController.java
 
+import com.example.aminehamed4twin7.entities.Chambre;
 import com.example.aminehamed4twin7.services.IBlocServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,15 +46,19 @@ public class BlocRestController {
     }
 
 
-    @PostMapping("/assign-chambres/{blocId}")
-    public ResponseEntity<Bloc> assignChambresToBloc(@RequestBody List<Long> numeroChambre,
+    @PutMapping("/assign-chambres/{blocId}")
+    public ResponseEntity<Bloc> assignChambresToBloc(@RequestBody List<Long> numeroChambres,
                                                      @PathVariable("blocId") long blocId) {
-        Bloc updatedBloc = blocServices.affecterChambresABloc(numeroChambre, blocId);
+        Bloc assignedBloc = blocServices.affecterChambresABloc(numeroChambres, blocId);
 
-        if (updatedBloc != null) {
-            return new ResponseEntity<>(updatedBloc, HttpStatus.OK);
+        if (assignedBloc != null) {
+            return new ResponseEntity<>(assignedBloc, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+    }
+    @PutMapping("/affecterBlocAFoyer/{idBloc}/{idFoyer}")
+    public  Bloc affecterBlocAFoyer (@PathVariable long idBloc , @PathVariable long idFoyer){
+        return blocServices.affecterBlocAFoyer(idBloc,idFoyer);
     }
 }

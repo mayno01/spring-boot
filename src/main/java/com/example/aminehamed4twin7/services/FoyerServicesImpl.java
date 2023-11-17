@@ -53,14 +53,14 @@ public class FoyerServicesImpl implements IFoyerServices {
         Universite universite = universiteRepository.findById(idUniversite).orElse(null);
 
         if (universite != null && foyer != null) {
-            // Set the Foyer to the specified Universite
+
             universite.setFoyer(foyer);
 
-            // Check the capacity of the Foyer
+
             long capaciteFoyer = foyer.getCapaciteFoyer();
             int numberOfBlocks = (int) Math.ceil((double) capaciteFoyer / 10);
 
-            // Create Blocs with capacities based on the Foyer's capacity
+
             List<Bloc> blocs = new ArrayList<>();
             for (int i = 0; i < numberOfBlocks; i++) {
                 long blocCapacity = Math.min(10, capaciteFoyer);
@@ -74,10 +74,10 @@ public class FoyerServicesImpl implements IFoyerServices {
                 blocs.add(bloc);
             }
 
-            // Set the list of Blocs to the Foyer
+
             foyer.setBlocs(blocs);
 
-            // Save the Foyer along with associated Blocs
+
             foyerRepository.save(foyer);
         }
 
