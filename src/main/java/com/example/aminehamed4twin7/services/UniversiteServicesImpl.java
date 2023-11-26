@@ -8,15 +8,25 @@ import com.example.aminehamed4twin7.entities.Universite;
 import com.example.aminehamed4twin7.repository.IFoyerRepository;
 import com.example.aminehamed4twin7.repository.IUniversiteRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Slf4j
+@Component
+@Aspect
 @Service
 @RequiredArgsConstructor
+
+
 public class UniversiteServicesImpl implements IUniversiteServices {
 
     final IFoyerRepository ifoyerRepository;
